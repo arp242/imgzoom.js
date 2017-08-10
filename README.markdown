@@ -11,7 +11,7 @@ Basic usage is as simple as:
 
 or:
 
-	<img src="http://example.com/thumbnail.jpg" data-large="http://example.com/fullsize.jpg"">
+	<img src="http://example.com/thumbnail.jpg" data-large="http://example.com/fullsize.jpg">
 
 Then bind to the click event with e.g.
 
@@ -26,7 +26,6 @@ With jQuery it's even easier:
 	$('img').on('click', function(e) {
 		imgzoom(this)
 	})
-
 
 For best results you probably want to add a wee bit of styling:
 
