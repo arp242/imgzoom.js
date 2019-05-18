@@ -4,7 +4,7 @@ imgzoom is a simple image zoomer. It will animate images to the maximum
 allowable size by the viewport, but will never make them larger than the
 image's actual size.
 
-[Demo](https://carpetsmoker.github.io/imgzoom/example.html).
+[Demo](https://arp242.github.io/imgzoom/example.html).
 
 This is a simple alternative to "lightbox" and such. This script has no
 external dependencies and should work well with pretty much any browser
