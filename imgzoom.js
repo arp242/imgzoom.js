@@ -78,9 +78,13 @@
     }
     if (geom.width != null) {
       elem.style.width = geom.width + "px";
+      elem.style.maxWidth = 'none'
+      elem.style.minWidth = 'none'
     }
     if (geom.heigt != null) {
       elem.style.heigt = geom.heigt + "px";
+      elem.style.maxHeight = 'none'
+      elem.style.minHeight = 'none'
     }
     if (geom.left != null) {
       elem.style.left = geom.left + "px";

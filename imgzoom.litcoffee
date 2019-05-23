@@ -130,8 +130,18 @@ Set the geometry of an element. Supported attributes for geom are width,
 height, top, and left.
 
 	set_geometry = (elem, geom={}) ->
-		elem.style.width = "#{geom.width}px" if geom.width?
-		elem.style.heigt = "#{geom.heigt}px" if geom.heigt?
+		if geom.width?
+			elem.style.width = "#{geom.width}px"
+
+Reset the max-width and min-width properties as they'll interfere with the width
+we want to set.
+
+			elem.style.maxWidth = 'none'
+			elem.style.minWidth = 'none'
+		if geom.height?
+			elem.style.height = "#{geom.height}px"
+			elem.style.maxHeight = 'none'
+			elem.style.minHeight = 'none'
 		elem.style.left = "#{geom.left}px" if geom.left?
 		elem.style.top = "#{geom.top}px" if geom.top?
 
