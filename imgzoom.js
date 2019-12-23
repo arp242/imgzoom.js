@@ -73,7 +73,8 @@
 				height: height,
 				top:    (window_height - height + padding) / 2 + get_scroll(),
 				left:   (window_width  - width  + padding) / 2,
-				zoom:   (window.devicePixelRatio < 1 ? (1 + window.devicePixelRatio / 2) : 1),
+				// TODO: I don't know if this is actually correct.
+				//zoom:   (window.devicePixelRatio < 1 ? (1 + window.devicePixelRatio / 2) : 1),
 			});
 
 			var close_key = function(e) {
@@ -91,7 +92,7 @@
 					height: img.height,
 					top:    offset.top,
 					left:   offset.left,
-					zoom:   1,
+					//zoom:   1,
 				});
 
 				// Remove the class after a brief timeout, so that the animation
