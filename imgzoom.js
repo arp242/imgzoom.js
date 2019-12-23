@@ -39,13 +39,10 @@
 				height = height / (width / window_width);
 				width  = window_width;
 			}
-
 			if (height > window_height) {
 				width  = width / (height / window_height);
 				height = window_height;
 			}
-			else
-				padding = 0;
 
 			large.className = 'imgzoom-large';
 			large.style.position = 'absolute';
@@ -66,7 +63,7 @@
 				width:  width,
 				height: height,
 				top:    (window_height - height + padding) / 2 + get_scroll(),
-				left:   (window_width - width) / 2
+				left:   (window_width - width + padding) / 2
 			});
 
 			var close_key = function(e) {
@@ -86,7 +83,6 @@
 					left:   offset.left
 				});
 
-
 				// Remove the class after a brief timeout, so that the animation
 				// appears fairly smooth in case of added padding and such.
 				//
@@ -102,22 +98,22 @@
 	};
 
 	var set_geometry = function(elem, geom) {
-		if (geom.width) {
-			elem.style.width = geom.width + "px";
+		if (geom.width != null) {
+			elem.style.width = geom.width + 'px';
 
 			// Reset as they'll interfere with the width we want to set.
 			elem.style.maxWidth = 'none'
 			elem.style.minWidth = 'none'
 		}
-		if (geom.height) {
-			elem.style.height = geom.height + "px";
+		if (geom.height != null) {
+			elem.style.height = geom.height + 'px';
 			elem.style.maxHeight = 'none'
 			elem.style.minHeight = 'none'
 		}
-		if (geom.left)
-			elem.style.left = geom.left + "px";
-		if (geom.top)
-			return elem.style.top = geom.top + "px";
+		if (geom.left != null)
+			elem.style.left = geom.left + 'px';
+		if (geom.top != null)
+			return elem.style.top = geom.top + 'px';
 
 	};
 
