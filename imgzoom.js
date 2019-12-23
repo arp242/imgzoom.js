@@ -19,8 +19,8 @@
 	// The imgzoom() function zooms the image on click. img is a reference to an
 	// image element as an HTMLElement
 	window.imgzoom = function(img) {
-		var src = img.dataset.large || img.src,
-			existing = document.getElementsByClassName('imgzoom-large');
+		var src      = img.dataset.large || img.src,
+		    existing = document.getElementsByClassName('imgzoom-large');
 		if (existing.length > 0 && existing[0].src === src)
 			return;
 
@@ -36,10 +36,10 @@
 			// Make the new image as large as possible, but not larger than the
 			// viewport.
 			var width         = large.width,
-				height        = large.height,
-				padding       = 25,
-				window_width  = document.documentElement.clientWidth  - padding,
-				window_height = document.documentElement.clientHeight - padding;
+			    height        = large.height,
+			    padding       = 25,
+			    window_width  = document.documentElement.clientWidth  - padding,
+			    window_height = document.documentElement.clientHeight - padding;
 			if (width > window_width) {
 				height = height / (width / window_width);
 				width  = window_width;
@@ -53,9 +53,9 @@
 			if (img.width*min_size >= width - padding/2 && img.height*min_size >= height - padding/2)
 				return;
 
-			large.className = 'imgzoom-large';
+			large.className      = 'imgzoom-large';
 			large.style.position = 'absolute';
-			large.style.zIndex = '5000';
+			large.style.zIndex   = '5000';
 
 			// Set the position to the same as the original.
 			var offset = get_offset(img);
@@ -131,10 +131,10 @@
 	};
 
 	var get_offset = function(elem) {
-		var rect = elem.getBoundingClientRect(),
-			doc = elem.ownerDocument,
-			docElem = doc.documentElement,
-			win = doc.defaultView;
+		var rect    = elem.getBoundingClientRect(),
+		    doc     = elem.ownerDocument,
+		    docElem = doc.documentElement,
+		    win     = doc.defaultView;
 		return {
 			top:  rect.top  + win.pageYOffset - docElem.clientTop,
 			left: rect.left + win.pageXOffset - docElem.clientLeft
