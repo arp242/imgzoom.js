@@ -2,13 +2,14 @@
 
 imgzoom is a simple image zoomer. It will animate images to the maximum
 allowable size by the viewport, but will never make them larger than the image's
-actual size.
+actual size. Images are zoomed only if the larger version is actually larger
+than the original.
 
-[Demo](https://arp242.github.io/imgzoom/example.html).
+[Demo](https://arp242.github.io/imgzoom/example.html)
 
 This is a simpler (and IMHO, better) alternative to "lightbox" scripts. This
 script has no external dependencies and should work well with pretty much any
-browser (including IE11, but not older versions).
+browser (including IE11, but not tested with versions).
 
 Basic usage:
 
@@ -25,7 +26,7 @@ Then bind to the click event with e.g.
         for (var i=0; i<img.length; i++) {
             img[i].addEventListener('click', function() { imgzoom(this); }, false);
         }
-    }, false);
+    });
 
 With jQuery it's even easier:
 
@@ -46,8 +47,3 @@ For best results you probably want to add a wee bit of styling:
         /* Simple animation */
         transition: all .4s;
     }
-
-
-This is a simplified version of
-[bluerail/picture_zoomer](https://github.com/bluerail/picture_zoomer), which I
-wrote a few years ago.
