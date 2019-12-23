@@ -9,6 +9,13 @@
 // Caveat: this may use a lot of CPU if you're using very large images (e.g.
 // 4500×6200) that need to be resized to fit the viewport.
 (function() {
+
+	// Padding from the window edge.
+	var padding = 25;
+
+	// The larger image must be 120% larger to do anything.
+	var min_size = 1.2;
+
 	// The imgzoom() function zooms the image on click. img is a reference to an
 	// image element as an HTMLElement
 	window.imgzoom = function(img) {
@@ -27,14 +34,12 @@
 			img.className = img.className.replace(/\s?imgzoom-loading\s?/g, '');
 
 			// Make the new image as large as possible, but not larger than the
-			// viewport. The padding is to ensure the image isn't right against
-			// the window's edge.
+			// viewport.
 			var width         = large.width,
 				height        = large.height,
 				padding       = 25,
-				window_width  = document.documentElement.clientWidth - padding,
+				window_width  = document.documentElement.clientWidth  - padding,
 				window_height = document.documentElement.clientHeight - padding;
-
 			if (width > window_width) {
 				height = height / (width / window_width);
 				width  = window_width;
@@ -43,6 +48,10 @@
 				width  = width / (height / window_height);
 				height = window_height;
 			}
+
+			// The large image isn't going to be much larger than the original.
+			if (img.width*min_size >= width - padding/2 && img.height*min_size >= height - padding/2)
+				return;
 
 			large.className = 'imgzoom-large';
 			large.style.position = 'absolute';
@@ -54,7 +63,7 @@
 				width:  img.width,
 				height: img.height,
 				top:    offset.top,
-				left:   offset.left
+				left:   offset.left,
 			});
 			document.body.appendChild(large);
 
@@ -63,7 +72,8 @@
 				width:  width,
 				height: height,
 				top:    (window_height - height + padding) / 2 + get_scroll(),
-				left:   (window_width - width + padding) / 2
+				left:   (window_width  - width  + padding) / 2,
+				zoom:   (window.devicePixelRatio < 1 ? (1 + window.devicePixelRatio / 2) : 1),
 			});
 
 			var close_key = function(e) {
@@ -80,7 +90,8 @@
 					width:  img.width,
 					height: img.height,
 					top:    offset.top,
-					left:   offset.left
+					left:   offset.left,
+					zoom:   1,
 				});
 
 				// Remove the class after a brief timeout, so that the animation
@@ -113,8 +124,9 @@
 		if (geom.left != null)
 			elem.style.left = geom.left + 'px';
 		if (geom.top != null)
-			return elem.style.top = geom.top + 'px';
-
+			elem.style.top = geom.top + 'px';
+		if (geom.zoom != null)
+			elem.style.transform = 'scale(' + geom.zoom + ')';
 	};
 
 	var get_offset = function(elem) {
