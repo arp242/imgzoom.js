@@ -8,6 +8,8 @@
 //
 // Caveat: this may use a lot of CPU if you're using very large images (e.g.
 // 4500×6200) that need to be resized to fit the viewport.
+//
+// https://github.com/arp242/imgzoom | MIT license applies, see LICENSE.
 (function() {
 
 	// Padding from the window edge.
@@ -118,7 +120,7 @@
 			elem.style.minWidth = 'none'
 		}
 		if (geom.height != null) {
-			elem.style.height = geom.height + 'px';
+			elem.style.height    = geom.height + 'px';
 			elem.style.maxHeight = 'none'
 			elem.style.minHeight = 'none'
 		}
