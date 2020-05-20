@@ -11,12 +11,8 @@
 //
 // https://github.com/arp242/imgzoom | MIT license applies, see LICENSE.
 (function() {
-
-	// Padding from the window edge.
-	var padding = 25;
-
-	// The larger image must be 120% larger to do anything.
-	var min_size = 1.2;
+	var padding  = 25,   // Padding from the window edge.
+	    min_size = 1.2;  // The larger image must be 120% larger to do anything.
 
 	// The imgzoom() function zooms the image on click. img is a reference to an
 	// image element as an HTMLElement
@@ -35,10 +31,9 @@
 		large.onload = function() {
 			img.className = img.className.replace(/\s?imgzoom-loading\s?/g, '');
 
-			// Make the new image as large as possible, but not larger than the
-			// viewport.
-			var width         = large.width,
-			    height        = large.height,
+			// Make the new image as large as possible but not larger than the viewport.
+			var width         = large.width *  (1 / window.devicePixelRatio),
+			    height        = large.height * (1 / window.devicePixelRatio),
 			    padding       = 25,
 			    window_width  = document.documentElement.clientWidth  - padding,
 			    window_height = document.documentElement.clientHeight - padding;
@@ -73,10 +68,8 @@
 			set_geometry(large, {
 				width:  width,
 				height: height,
-				top:    (window_height - height + padding) / 2 + get_scroll(),
+				top:    (window_height - height + padding) / 2 + (document.documentElement.scrollTop || document.body.scrollTop),
 				left:   (window_width  - width  + padding) / 2,
-				// TODO: I don't know if this is actually correct.
-				//zoom:   (window.devicePixelRatio < 1 ? (1 + window.devicePixelRatio / 2) : 1),
 			});
 
 			var close_key = function(e) {
@@ -94,13 +87,11 @@
 					height: img.height,
 					top:    offset.top,
 					left:   offset.left,
-					//zoom:   1,
 				});
 
 				// Remove the class after a brief timeout, so that the animation
 				// appears fairly smooth in case of added padding and such.
-				//
-				// TODO: Detect position?
+				// TODO: Detect position instead of using a timeout?
 				setTimeout(function() {
 					if (large.parentNode)
 						large.parentNode.removeChild(large);
@@ -128,8 +119,6 @@
 			elem.style.left = geom.left + 'px';
 		if (geom.top != null)
 			elem.style.top = geom.top + 'px';
-		if (geom.zoom != null)
-			elem.style.transform = 'scale(' + geom.zoom + ')';
 	};
 
 	var get_offset = function(elem) {
@@ -141,9 +130,5 @@
 			top:  rect.top  + win.pageYOffset - docElem.clientTop,
 			left: rect.left + win.pageXOffset - docElem.clientLeft
 		};
-	};
-
-	var get_scroll = function() {
-		return document.documentElement.scrollTop || document.body.scrollTop;
 	};
 }).call(this);

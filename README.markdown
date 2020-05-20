@@ -9,17 +9,21 @@ than the original.
 
 This is a simpler (and IMHO, better) alternative to "lightbox" scripts. This
 script has no external dependencies and should work well with pretty much any
-browser (including IE11, but not tested with versions).
+browser (including IE11).
 
 Basic usage:
 
-    <img src="http://example.com/image.jpg" style="width: 300px">
+```html
+<img src="http://example.com/image.jpg" style="width: 300px">
+```
 
 or:
 
-    <img src="http://example.com/thumbnail.jpg" data-large="http://example.com/fullsize.jpg">
+```html
+<img src="http://example.com/thumbnail.jpg" data-large="http://example.com/fullsize.jpg">
+```
 
-Then bind to the click event with e.g.
+Then bind to the click event with something like:
 
 ```javascript
 window.addEventListener('load', function() {
@@ -47,3 +51,5 @@ img.imgzoom-loading { cursor: wait !important; }
     .imgzoom-large  { transition: all .4s; }
 }
 ```
+
+And that's it!
