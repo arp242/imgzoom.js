@@ -21,29 +21,29 @@ or:
 
 Then bind to the click event with e.g.
 
-    window.addEventListener('load', function() {
-        var img = document.querySelectorAll('img');
-        for (var i=0; i<img.length; i++) {
-            img[i].addEventListener('click', function() { imgzoom(this); }, false);
-        }
-    });
+```javascript
+window.addEventListener('load', function() {
+    var img = document.querySelectorAll('img');
+    for (var i=0; i<img.length; i++) {
+        img[i].addEventListener('click', function() { imgzoom(this); }, false);
+    }
+});
+```
 
 With jQuery it's even easier:
 
-    $(document).ready(function() {
-        $('img').on('click', function() { imgzoom(this); });
-    })
+```javascript
+$(document).ready(function() {
+    $('img').on('click', function() { imgzoom(this); });
+})
+```
 
 For best results you probably want to add a wee bit of styling:
 
-    img.imgzoom-loading {
-        cursor: wait !important;
-    }
-
-    .imgzoom-large {
-        cursor: pointer;
-        box-shadow: 0 0 8px rgba(0, 0, 0, .3);
-
-        /* Simple animation */
-        transition: all .4s;
-    }
+```css
+img.imgzoom-loading { cursor: wait !important; }
+.imgzoom-large      { cursor: pointer; box-shadow: 0 0 8px rgba(0, 0, 0, .3); }
+@media not (prefers-reduced-motion: reduce) {
+    .imgzoom-large  { transition: all .4s; }
+}
+```

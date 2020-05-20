@@ -4,14 +4,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>imgzoom examples</title>
 	<style>
-		body   { font-size: 18px; line-height: 1.8em; max-width: 50em; margin: 1em auto; padding: 0 1em; }
-		p      { text-align: justify; }
-		.right { cursor: pointer; float: right; margin-left: 1.5em; }
-		.left  { cursor: pointer; float: left; margin-right: 1.5em; }
-		figure { margin-bottom: 0; }
+		body       { font-size: 18px; line-height: 1.8em; max-width: 50em; margin: 1em auto; padding: 0 1em; }
+		p          { text-align: justify; }
+		.right     { cursor: pointer; float: right; margin-left: 1.5em; }
+		.left      { cursor: pointer; float: left; margin-right: 1.5em; }
+		figure     { margin-bottom: 0; }
+		figcaption { text-align: center; font-size: .9em; }
 
 		img.imgzoom-loading { cursor: wait !important; }
-		.imgzoom-large      { cursor: pointer; box-shadow: 0 0 8px rgba(0, 0, 0, .3); transition: all .4s; }
+		.imgzoom-large      { cursor: pointer; box-shadow: 0 0 8px rgba(0, 0, 0, .3); }
+		@media not (prefers-reduced-motion: reduce) {
+			.imgzoom-large  { transition: all .4s; }
+		}
 	</style>
 </head>
 <body>
@@ -54,8 +58,12 @@
 	sem fringilla lacinia ut eget nisl. Morbi vitae nisi quis elit consectetur bibendum. </p>
 
 	<!-- Image is (probably) larger than the zoomed version, especially on smaller screens. -->
-	<img style="max-width: 100%"
-		src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Pieter_Brueghel_the_Elder_-_The_Dutch_Proverbs_-_Google_Art_Project.jpg/1280px-Pieter_Brueghel_the_Elder_-_The_Dutch_Proverbs_-_Google_Art_Project.jpg">
+	<figure>
+		<img style="max-width: 100%"
+			src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Pieter_Brueghel_the_Elder_-_The_Dutch_Proverbs_-_Google_Art_Project.jpg/1280px-Pieter_Brueghel_the_Elder_-_The_Dutch_Proverbs_-_Google_Art_Project.jpg">
+		<figcaption>Probably won't be zoomed as the zoomed version won't be larger (depending on
+			your screen size).</figcaption>
+	</figure>
 
 	<script src="https://arp242.github.io/imgzoom/imgzoom.js"></script>
 	<script src="/imgzoom.js"></script>
