@@ -5,11 +5,20 @@ allowable size by the viewport, but will never make them larger than the image's
 actual size. Images are zoomed only if the larger version is actually larger
 than the original.
 
-[Demo](https://arp242.github.io/imgzoom/example.html)
+Some example usages:
 
-This is a simpler (and IMHO, better) alternative to "lightbox" scripts. This
+- [Demo](https://arp242.github.io/imgzoom/example.html)
+- [bestasciitable.com](https://bestasciitable.com)
+- [goatcounter.com](https://www.goatcounter.com)
+
+This is a simpler (and IMHO better) alternative to "lightbox" scripts. This
 script has no external dependencies and should work well with pretty much any
-browser (including IE11).
+browser (including IE11, mobile, etc.)
+
+It's a small library: 4.4k (1.9k gzip'd). If you really want to save bytes you
+can minify it to 2.4k (978 bytes gzip'd).
+
+---
 
 Basic usage:
 
@@ -17,7 +26,10 @@ Basic usage:
 <img src="http://example.com/image.jpg" style="width: 300px">
 ```
 
-or:
+The `src` attribute is automatically used; images will only be zoomed if the
+zoomed version is actually larger.
+
+Use `data-large` to specify a different larger image:
 
 ```html
 <img src="http://example.com/thumbnail.jpg" data-large="http://example.com/fullsize.jpg">
@@ -27,18 +39,18 @@ Then bind to the click event with something like:
 
 ```javascript
 window.addEventListener('load', function() {
-    var img = document.querySelectorAll('img');
+    var img = document.querySelectorAll('img')
     for (var i=0; i<img.length; i++) {
-        img[i].addEventListener('click', function() { imgzoom(this); }, false);
+        img[i].addEventListener('click', imgzoom)
     }
-});
+})
 ```
 
 With jQuery it's even easier:
 
 ```javascript
 $(document).ready(function() {
-    $('img').on('click', function() { imgzoom(this); });
+    $('img').on('click', imgzoom)
 })
 ```
 

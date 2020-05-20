@@ -71,7 +71,7 @@
 		window.addEventListener('load', function() {
 			var img = document.querySelectorAll('img');
 			for (var i=0; i<img.length; i++) {
-				img[i].addEventListener('click', function(e) { imgzoom(this); }, false);
+				img[i].addEventListener('click', imgzoom)
 			}
 		}, false);
 	</script>
