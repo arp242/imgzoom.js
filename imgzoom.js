@@ -6,9 +6,6 @@
 //
 // The URL for the large version is either 'data-large', or the image's src.
 //
-// Caveat: this may use a lot of CPU if you're using very large images (e.g.
-// 4500×6200) that need to be resized to fit the viewport.
-//
 // https://github.com/arp242/imgzoom | MIT license applies, see LICENSE.
 (function() {
 	var padding  = 25,  // Padding from the window edge.
