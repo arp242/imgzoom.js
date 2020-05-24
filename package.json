@@ -1,0 +1,17 @@
+{
+  "name": "imgzoom",
+  "version": "0.0.1",
+  "description": "Image zoomer",
+  "homepage": "https://github.com/arp242/imgzoom#readme",
+  "keywords": ["images", "lightbox"],
+  "author": "Martin Tournoij <martin@arp242.net>",
+  "license": "MIT",
+  "main": "imgzoom.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arp242/imgzoom.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arp242/imgzoom/issues"
+  }
+}

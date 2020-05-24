@@ -1,9 +1,12 @@
 [![This project is considered stable](https://img.shields.io/badge/Status-stable-green.svg)](https://arp242.net/status/stable)
 
-imgzoom is a simple image zoomer. It will animate images to the maximum
-allowable size by the viewport, but will never make them larger than the image's
-actual size. Images are zoomed only if the larger version is actually larger
-than the original.
+imgzoom is an image zoomer: it will animate images to the maximum allowable size
+by the viewport, but will never make them larger than the image's actual size.
+Images are zoomed only if the larger version is actually larger than the
+original.
+
+This is a good alternative to "lightbox" and such for many cases. It's snappy,
+simple, and looks nice.
 
 Some example usages:
 
@@ -11,8 +14,7 @@ Some example usages:
 - [bestasciitable.com](https://bestasciitable.com)
 - [goatcounter.com](https://www.goatcounter.com)
 
-This is a simpler (and IMHO better) alternative to "lightbox" scripts. This
-script has no external dependencies and should work well with pretty much any
+There are no external dependencies and should work well with pretty much any
 browser (including IE11, mobile, etc.)
 
 It's a small library: 4.4k (1.9k gzip'd). If you really want to save bytes you

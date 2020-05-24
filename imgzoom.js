@@ -1,18 +1,19 @@
-// imgzoom is a simple image zoomer. It will animate images to the maximum
-// allowable size by the viewport, but will never make them larger than the
-// image's actual size.
+// imgzoom is an image zoomer. It will animate images to the maximum allowable
+// size by the viewport, but will never make them larger than the image's actual
+// size.
 //
-// This is a simple alternative to "lightbox" and such.
+// This is a good alternative to "lightbox" and such as it's snappy and looks
+// nice.
 //
 // The URL for the large version is either 'data-large', or the image's src.
 //
 // https://github.com/arp242/imgzoom | MIT license applies, see LICENSE.
 (function() {
 	var padding  = 25,  // Padding from the window edge.
-	    min_size = 1.2  // The larger image must be 120% larger to do anything.
+	    min_size = 1.2  // The larger image must be 20% larger to do anything.
 
-	// The imgzoom() function zooms the image on click. img is a reference to an
-	// image element as an HTMLElement
+	// The imgzoom() function zooms the image on click. img_or_ev can either be
+	// a reference to an image as a HTMLElement or a ClickEvent on the image.
 	window.imgzoom = function(img_or_ev) {
 		var img      = (img_or_ev instanceof Event) ? img_or_ev.target : img_or_ev,
 		    src      = img.dataset.large || img.src,
@@ -20,9 +21,9 @@
 		if (existing.length > 0 && existing[0].src === src)
 			return
 
-		var large = new Image()
-		large.src = src
 		img.className += ' imgzoom-loading'
+
+		var large = new Image()
 
 		// We use the load event (rather than just displaying it) to make sure
 		// the image is fully loaded.
@@ -30,7 +31,7 @@
 			img.className = img.className.replace(/\s?imgzoom-loading\s?/g, '')
 
 			// Make the new image as large as possible but not larger than the viewport.
-			var width         = large.width *  (1 / window.devicePixelRatio),
+			var width         = large.width  * (1 / window.devicePixelRatio),
 			    height        = large.height * (1 / window.devicePixelRatio),
 			    padding       = 25,
 			    window_width  = document.documentElement.clientWidth  - padding,
@@ -45,7 +46,7 @@
 			}
 
 			// The large image isn't going to be much larger than the original.
-			if (img.width*min_size >= width - padding/2 && img.height*min_size >= height - padding/2)
+			if (img.width*min_size >= width-padding/2 && img.height*min_size >= height - padding/2)
 				return
 
 			large.className      = 'imgzoom-large'
@@ -66,8 +67,9 @@
 			set_geometry(large, {
 				width:  width,
 				height: height,
-				top:    (window_height - height + padding) / 2 + (document.documentElement.scrollTop || document.body.scrollTop),
 				left:   (window_width  - width  + padding) / 2,
+				top:    (window_height - height + padding) / 2 +
+				            (document.documentElement.scrollTop || document.body.scrollTop),
 			})
 
 			var close_key = function(e) {
@@ -98,6 +100,7 @@
 			html.addEventListener('click', close)
 			html.addEventListener('keydown', close_key)
 		}
+		large.src = src
 	}
 
 	var set_geometry = function(elem, geom) {
