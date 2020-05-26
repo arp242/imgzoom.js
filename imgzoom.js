@@ -8,14 +8,13 @@
 // The URL for the large version is either 'data-large', or the image's src.
 //
 // https://github.com/arp242/imgzoom | MIT license applies, see LICENSE.
-
 (function() {
 	var padding  = 25,  // Padding from the window edge.
 	    min_size = 1.2  // The larger image must be 20% larger to do anything.
 
 	// The imgzoom() function zooms the image on click. img_or_ev can either be
 	// a reference to an image as a HTMLElement or a ClickEvent on the image.
-	var imgzoom = function(img_or_ev) {
+	window.imgzoom = function(img_or_ev) {
 		var img      = (img_or_ev instanceof Event) ? img_or_ev.target : img_or_ev,
 		    src      = img.dataset.large || img.src,
 		    existing = document.getElementsByClassName('imgzoom-large')
@@ -133,14 +132,4 @@
 			left: rect.left + win.pageXOffset - docElem.clientLeft
 		}
 	}
-
-	// UMD magic; https://github.com/umdjs/umd
-	(function (root, factory) {
-		if (typeof define === 'function' && define.amd)
-			define(['b'], factory)
-		else
-			root.amdWeb = factory(root.b)
-	}(typeof self !== 'undefined' ? self : this, function (b) {
-		return imgzoom
-	}))
 }).call(this)
