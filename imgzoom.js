@@ -8,13 +8,27 @@
 // The URL for the large version is either 'data-large', or the image's src.
 //
 // https://github.com/arp242/imgzoom | MIT license applies, see LICENSE.
-(function() {
+(function(global, factory) {
+	'use strict';
+
+	if (!global.document)
+		throw new Error('imgzoom requires a window with a document')
+
+	if (typeof module === 'object' && typeof module.exports === 'object')
+		module.exports = factory(global, false)
+	else
+		factory(global, true)
+
+// Pass this if window is not defined yet
+})((typeof window !== 'undefined' ? window : this), function(window, expose_global) {
+	'use strict';
+
 	var padding  = 25,  // Padding from the window edge.
 	    min_size = 1.2  // The larger image must be 20% larger to do anything.
 
 	// The imgzoom() function zooms the image on click. img_or_ev can either be
 	// a reference to an image as a HTMLElement or a ClickEvent on the image.
-	window.imgzoom = function(img_or_ev) {
+	var imgzoom = function(img_or_ev) {
 		var img      = (img_or_ev instanceof Event) ? img_or_ev.target : img_or_ev,
 		    src      = img.dataset.large || img.src,
 		    existing = document.getElementsByClassName('imgzoom-large')
@@ -132,4 +146,9 @@
 			left: rect.left + win.pageXOffset - docElem.clientLeft
 		}
 	}
-}).call(this)
+
+	if (expose_global)
+		window.imgzoom = imgzoom
+
+	return imgzoom
+});
