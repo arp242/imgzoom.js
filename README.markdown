@@ -20,6 +20,9 @@ browser (including IE11, mobile, etc.)
 It's a small library: 4.4k (1.9k gzip'd). If you really want to save bytes you
 can minify it to 2.4k (978 bytes gzip'd).
 
+`window.imgzoom` will be exported when loaded via a `<script>` tag, or you can
+use `import imgzoom from 'imgzoom'` from WebPack etc.
+
 ---
 
 Basic usage:
