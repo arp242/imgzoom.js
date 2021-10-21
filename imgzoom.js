@@ -122,13 +122,13 @@
 			elem.style.width = geom.width + 'px'
 
 			// Reset as they'll interfere with the width we want to set.
-			elem.style.maxWidth = 'none'
-			elem.style.minWidth = 'none'
+			elem.style.maxWidth = 'unset'
+			elem.style.minWidth = 'unset'
 		}
 		if (geom.height != null) {
 			elem.style.height    = geom.height + 'px'
-			elem.style.maxHeight = 'none'
-			elem.style.minHeight = 'none'
+			elem.style.maxHeight = 'unset'
+			elem.style.minHeight = 'unset'
 		}
 		if (geom.left != null)
 			elem.style.left = geom.left + 'px'
