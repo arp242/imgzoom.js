@@ -10,12 +10,6 @@
 		.left      { cursor: pointer; float: left; margin-right: 1.5em; }
 		figure     { margin-bottom: 0; }
 		figcaption { text-align: center; font-size: .9em; }
-
-		img.imgzoom-loading { cursor: wait !important; }
-		.imgzoom-large      { cursor: pointer; box-shadow: 0 0 8px rgba(0, 0, 0, .3); }
-		@media not (prefers-reduced-motion: reduce) {
-			.imgzoom-large  { transition: all .4s; }
-		}
 	</style>
 </head>
 <body>
@@ -65,15 +59,12 @@
 			depending on your screen size. Play around by zooming in/out.</figcaption>
 	</figure>
 
-	<script src="https://arp242.github.io/imgzoom/imgzoom.js"></script>
+	<script src="https://arp242.github.io/imgzoom.js/imgzoom.js"></script>
 	<script src="/imgzoom.js"></script>
 	<script>
-		window.addEventListener('load', function() {
-			var img = document.querySelectorAll('img');
-			for (var i=0; i<img.length; i++) {
-				img[i].addEventListener('click', imgzoom)
-			}
-		}, false);
+		window.addEventListener('load', () => {
+			document.querySelectorAll('img').forEach((img) => img.addEventListener('click', imgzoom))
+		})
 	</script>
 </body>
 </html>
